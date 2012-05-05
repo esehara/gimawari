@@ -32,7 +32,7 @@ def show_help():
     しろ                        -> git init
     とってきて/かいしゅう       -> git pull
     
-    hoge/fuga へ おねがい/よろしく/たのむ
+    hoge/fuga へ おねがい/よろしく/たのむ/まかせた
         -> git status && git push hoge fuga
 
     Branch系::
@@ -113,7 +113,10 @@ def parse_args(args):
 		if len(args) == 4:return "git remote add " + args[3] + " git@github:" + args[2]
 
 	if len(args) == 4:
-		if args[2] == "へ" and (args[3] == "おねがい" or args[3] == "よろしく" or args[3] == "たのむ"):git_push(args[1])
+		if args[2] == "へ" and (args[3] == "おねがい" 
+				or args[3] == "よろしく" 
+				or args[3] == "たのむ"
+				or args[3] == "まかせた"):git_push(args[1])
 	
 	if args[1] == "たすけて":
 		show_commit_help()
