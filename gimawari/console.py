@@ -67,7 +67,7 @@ def parse_args(args):
 		if args[1] == "おねがい":git_push()
 	if len(args) == 3:
 		if args[1] == "ぜんぶ" and args[2] == "いれて": return "git add -a"
-		alphabet = re.compile("(\w|.)+")
+		alphabet = re.compile("^(\w|.)+$")
 		if alphabet.search(args[1]):
 			for conf in gimawari_config.first_alpha():
 				if args[2] == conf[0]:return conf[1] + " " + args[1]
