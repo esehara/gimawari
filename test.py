@@ -10,6 +10,7 @@ def parse_one_args_test():
 	eq_(tt_pattern("しろ")  ,"git init")
 	eq_(tt_pattern("みせて"),"git diff HEAD")
 	eq_(tt_pattern("ぜんぶ"),"git add -u")
+	eq_(tt_pattern("すべて"),"git add -u")
 
 def parse_first_alpha_test():
 	eq_(tt_pattern("hoge　いれて"),"git add hoge")

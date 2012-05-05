@@ -5,6 +5,7 @@ def argone_list():
 				["みせて","git diff HEAD"],
 				["とってきて","git pull"],
 				["ぜんぶ","git add -u"],
+				["すべて","git add -u"],
 			])
 
 def first_alpha():
