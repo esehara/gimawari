@@ -39,7 +39,8 @@ def show_help():
     Add & Commit系 ::
 
 
-	hoge.py いれて   -> git add hoge.py
+    ぜんぶ           -> git add -u
+    hoge.py いれて   -> git add hoge.py
     hoge.py いらない -> git rm hoge.py
     コミット hogehoge です    -> git commit -m "hogehoge"
     hoge あわせて    -> git marge
@@ -92,6 +93,7 @@ def git_push():
 	yes_or_no = raw_input("「これでいいんだね？」(はい / いいえ)")
 	if yes_or_no == "はい":
 		commands.getoutput("git push")
+		exit()
 	else:
 		print "「じゃあね」"
 		exit()
