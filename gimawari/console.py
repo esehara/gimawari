@@ -89,10 +89,10 @@ def parse_args(args):
 	exit()
 
 def git_push():
-	subprocess.check_output("git status",shell=True)
+	print subprocess.check_output("git status",shell=True)
 	yes_or_no = raw_input("「これでいいんだね？」(はい / いいえ)")
 	if yes_or_no == "はい":
-		subprocess.check_output("git push",shell=True)
+		print subprocess.check_output("git push",shell=True)
 		exit()
 	else:
 		print "「じゃあね」"
