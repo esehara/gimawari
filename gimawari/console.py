@@ -88,7 +88,7 @@ def parse_args(args):
 
 	if len(args) == 4:
 		if args[2] == "へ" and (args[3] == "おねがい" or args[3] == "よろしく" or args[3] == "たのむ"):
-			git_push(args[2])
+			git_push(args[1])
 	print "ごめん、それわからない"
 	exit()
 
