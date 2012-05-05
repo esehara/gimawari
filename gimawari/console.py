@@ -24,7 +24,9 @@ def show_help():
 
     しろ             -> git init
     とってきて       -> git pull
-    おねがい         -> git status && git push
+    
+    hoge/fuga へ おねがい/よろしく/たのむ
+        -> git status && git push hoge fuga
 
     Branch系::
     
@@ -64,7 +66,6 @@ def parse_args(args):
 	if len(args) == 2:
 		for conf in gimawari_config.argone_list():
 			if args[1] == conf[0]:return conf[1]
-		if args[1] == "おねがい":git_push()
 	if len(args) == 3:
 		if args[1] == "ぜんぶ" and args[2] == "いれて": return "git add -a"
 		alphabet = re.compile("^(\w|.)+$")
@@ -85,14 +86,18 @@ def parse_args(args):
 		if len(args) == 3:return "git remote add origin git@github:" + args[2]
 		if len(args) == 4:return "git remote add " + args[3] + " git@github:" + args[2]
 
+	if len(args) == 4:
+		if args[2] == "へ" and (args[3] == "おねがい" or args[3] == "よろしく" or args[3] == "たのむ"):
+			git_push(args[2])
 	print "ごめん、それわからない"
 	exit()
 
-def git_push():
+def git_push(origin_master):
 	print subprocess.check_output("git status",shell=True)
 	yes_or_no = raw_input("「これでいいんだね？」(はい / いいえ)")
 	if yes_or_no == "はい":
-		print subprocess.check_output("git push",shell=True)
+		origin_master = origin_master.split("/") 
+		print subprocess.check_output("git push " + origin_master[0] + " " + origin_master[1],shell=True)
 		exit()
 	else:
 		print "「じゃあね」"
