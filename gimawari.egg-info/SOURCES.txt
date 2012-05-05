@@ -1,9 +1,0 @@
-setup.py
-gimawari/__init__.py
-gimawari/console.py
-gimawari/gimawari_config.py
-gimawari.egg-info/PKG-INFO
-gimawari.egg-info/SOURCES.txt
-gimawari.egg-info/dependency_links.txt
-gimawari.egg-info/entry_points.txt
-gimawari.egg-info/top_level.txt

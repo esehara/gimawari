@@ -1,4 +1,0 @@
-# -*- Entry Points: -*-
-[console_scripts]
-gimawari = gimawari.console:begin
-	  
