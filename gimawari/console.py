@@ -10,10 +10,17 @@ def show_commit_help():
 	print ("""
     ぎまわり -- Gimawari
 
-    「コミットのなにで困ってるんだい？」
+    「なにで困ってるんだい？」
 
     コミット コメント まちがえた -> git commit --amend
     コミット とりけす        -> git reset HEAD^ 
+    コミット まきもどす      -> git reset --soft HEAD
+    
+    マージ とりけす -> git reset --hard ORIG_HEAD
+    
+    リベース とりけす -> git rebase --abort
+    
+    リセット しっぱい -> git reflog
     """)
 
 def show_help():
@@ -22,8 +29,8 @@ def show_help():
 
     Gimawariは、Gitまわりを日本語で手助けするツールです。
 
-    しろ             -> git init
-    とってきて       -> git pull
+    しろ                        -> git init
+    とってきて/かいしゅう       -> git pull
     
     hoge/fuga へ おねがい/よろしく/たのむ
         -> git status && git push hoge fuga
@@ -40,22 +47,29 @@ def show_help():
 
     Add & Commit系 ::
 
-
     ぜんぶ           -> git add -u
     hoge.py いれて   -> git add hoge.py
     hoge.py いらない -> git rm hoge.py
     コミット hogehoge です    -> git commit -m "hogehoge"
     hoge あわせて    -> git marge
 
+    Stash系::
+    たいひ           -> git stash save
+    たいひ かいしゅう-> git stash pop
+    たいひ みせて    -> git stash list
+    たいひ はんえい  -> git stash apply
+    たいひ けす      -> git stash drop
+
     !! 困ったーーーーー !!
 
-    コミット たすけて -> コマンド表示
+    たすけて -> コマンド表示
 
     !! べんり !!
     
     ギッハブよろしく hoge/hoge -> git remote add origin git@github:hoge/hoge
-	ギッハブよろしく hoge/hoge github -> git remote add github git@github:hoge/hoge
-    """)
+    ギッハブよろしく hoge/hoge github -> git remote add github git@github:hoge/hoge
+	グラフにして -> git log --graph --date-order --all --date=short --oneline
+	""")
 
 def parse_args(args):
 	zenkuhaku = re.compile("　")
@@ -68,19 +82,31 @@ def parse_args(args):
 			if args[1] == conf[0]:return conf[1]
 	if len(args) == 3:
 		if args[1] == "ぜんぶ" and args[2] == "いれて": return "git add -a"
+		if args[1] == "たいひ":
+			if args[2] == "かいしゅう": return "git stash pop"
+			if args[2] == "みせて"  : return "git stash list"
+			if args[2] == "はんえい": return "git stash apply"
+			if args[2] == "けす"    : return "git stash drop"
 		alphabet = re.compile("^(\w|.)+$")
 		if alphabet.search(args[1]):
 			for conf in gimawari_config.first_alpha():
 				if args[2] == conf[0]:return conf[1] + " " + args[1]
 	if args[1] == "コミット":
 		if len(args) == 3:
-			if args[2] == "たすけて":
-				show_commit_help()
-				exit()
 			if args[2] == "とりけす": return "git reset HEAD^"
+			if args[2] == "まきもどす": return "git reset --soft HEAD^"
 		if len(args) > 3:
 			if args[3] == "です": return 'git commit -m "' + args[2] + '"'
 			if args[2] == "コメント" and args[3] == "まちがえた": return "git commit --amend"
+
+	if args[1] == "マージ":
+		if args[2] == "とりけす": return "git reset --head ORIG_HEAD"
+
+	if args[1] == "リベース":
+		if args[2] == "とりけす": return "git rebase --abort"
+
+	if args[1] == "リセット":
+		if args[2] == "しっぱい": return "git reflog"
 
 	if args[1] == "ギッハブよろしく":
 		if len(args) == 3:return "git remote add origin git@github:" + args[2]
@@ -88,6 +114,11 @@ def parse_args(args):
 
 	if len(args) == 4:
 		if args[2] == "へ" and (args[3] == "おねがい" or args[3] == "よろしく" or args[3] == "たのむ"):git_push(args[1])
+	
+	if args[1] == "たすけて":
+		show_commit_help()
+		exit()
+	
 	print "ごめん、それわからない"
 	exit()
 

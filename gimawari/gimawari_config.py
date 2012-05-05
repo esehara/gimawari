@@ -4,8 +4,11 @@ def argone_list():
 				["しろ","git init"],
 				["みせて","git diff HEAD"],
 				["とってきて","git pull"],
+				["かいしゅう","git pull"],
 				["ぜんぶ","git add -u"],
 				["すべて","git add -u"],
+				["グラフにして","git log --graph --date-order --all --date=short --oneline"],
+				["たいひ","git stash save"],
 			])
 
 def first_alpha():
