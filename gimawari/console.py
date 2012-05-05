@@ -89,10 +89,10 @@ def parse_args(args):
 	exit()
 
 def git_push():
-	print commands.getoutput("git status")
+	print commands.getstatus("git status")
 	yes_or_no = raw_input("「これでいいんだね？」(はい / いいえ)")
 	if yes_or_no == "はい":
-		print commands.getoutput("git push")
+		print commands.getstatus("git push")
 		exit()
 	else:
 		print "「じゃあね」"
@@ -104,7 +104,7 @@ def begin():
 		sys.exit()
 	run_string = parse_args(args)
 	print "実行するわ => " + run_string
-	print commands.getoutput(run_string)
+	print commands.getstatus(run_string)
 	exit()
 
 if __name__ == '__main__': begin()
