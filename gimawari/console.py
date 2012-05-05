@@ -38,8 +38,8 @@ def show_help():
 
     Add & Commit系 ::
 
+
     ぜんぶ           -> git add -u
-    ぜんぶ いれて    -> git add -a
     hoge.py いれて   -> git add hoge.py
     hoge.py いらない -> git rm hoge.py
     コミット hogehoge です    -> git commit -m "hogehoge"
@@ -49,6 +49,10 @@ def show_help():
 
     コミット たすけて -> コマンド表示
 
+    !! べんり !!
+    
+    ギッハブよろしく hoge/hoge -> git remote add origin git@github:hoge/hoge
+	ギッハブよろしく hoge/hoge github -> git remote add github git@github:hoge/hoge
     """)
 
 def parse_args(args):
@@ -62,11 +66,11 @@ def parse_args(args):
 			if args[1] == conf[0]:return conf[1]
 		if args[1] == "おねがい":git_push()
 	if len(args) == 3:
+		if args[1] == "ぜんぶ" and args[2] == "いれて": return "git add -a"
 		alphabet = re.compile("(\w|.)+")
 		if alphabet.search(args[1]):
 			for conf in gimawari_config.first_alpha():
 				if args[2] == conf[0]:return conf[1] + " " + args[1]
-		if args[1] == "ぜんぶ" and args[2] == "いれて": return "git add -a"
 	if args[1] == "コミット":
 		if len(args) == 3:
 			if args[2] == "たすけて":
@@ -76,6 +80,10 @@ def parse_args(args):
 		if len(args) > 3:
 			if args[3] == "です": return 'git commit -m "' + args[2] + '"'
 			if args[2] == "コメント" and args[3] == "まちがえた": return "git commit --amend"
+
+	if args[1] == "ギッハブよろしく":
+		if len(args) == 3:return "git remote add origin git@github:" + args[2]
+		if len(args) == 4:return "git remote add " + args[3] + " git@github:" + args[2]
 
 	print "ごめん、それわからない"
 	exit()
