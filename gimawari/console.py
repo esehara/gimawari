@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 import os,sys,re
 import gimawari_config
-import commands
+import subprocess
 
 args = sys.argv
 
@@ -89,10 +89,10 @@ def parse_args(args):
 	exit()
 
 def git_push():
-	commands.getoutput("git status")
+	subprocess.check_output("git status",shell=True)
 	yes_or_no = raw_input("「これでいいんだね？」(はい / いいえ)")
 	if yes_or_no == "はい":
-		commands.getoutput("git push")
+		subprocess.check_output("git push",shell=True)
 		exit()
 	else:
 		print "「じゃあね」"
@@ -104,7 +104,7 @@ def begin():
 		sys.exit()
 	run_string = parse_args(args)
 	print "実行するわ => " + run_string
-	commands.getoutput(run_string)
+	print subprocess.check_output(run_string,shell=True)
 	exit()
 
 if __name__ == '__main__': begin()
