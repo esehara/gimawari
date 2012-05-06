@@ -16,6 +16,7 @@ def parse_one_args_test():
 def parse_first_alpha_test():
 	eq_(tt_pattern("hoge　いれて"),"git add hoge")
 	eq_(tt_pattern("hoge　いらない"),"git rm hoge")
+	eq_(tt_pattern("hoge　まぜない"),"git rm --cached")
 	eq_(tt_pattern("hoge　はじめる"),"git checkout -b hoge")
 	eq_(tt_pattern("hoge　つかう"),"git checkout hoge")
 	eq_(tt_pattern("hoge　おわり"),"git checkout -d hoge")
@@ -23,7 +24,7 @@ def parse_first_alpha_test():
 def parse_first_commit_test():
 	eq_(tt_pattern("コミット　とりけす"),"git reset HEAD^")
 	eq_(tt_pattern("コミット　コメント　まちがえた"),"git commit --amend")
-	eq_(tt_pattern("コミット　ほげほげ　です"),'git commit -m "ほげほげ"')
+	eq_(tt_pattern("コミット　ほげほげ　です"),'git commit -v -m "ほげほげ"')
 
 def parse_stash_test():
 	eq_(tt_pattern("たいひ　かいしゅう"),"git stash pop")

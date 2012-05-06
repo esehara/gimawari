@@ -6,6 +6,17 @@ import subprocess
 
 args = sys.argv
 
+def show_combinient_help():
+	print ("""
+    ぎまわり -- Gimawari
+
+    設定系
+    Vim   -> git config --global core.editor vim
+    Emacs -> git config --global core.editor emacs
+    いろつき -> git config --global color.ui auto
+
+	""")
+
 def show_commit_help():
 	print ("""
     ぎまわり -- Gimawari
@@ -45,11 +56,16 @@ def show_help():
 
     みせて           -> git diff HEAD
 
+    Log系::
+
+    さいしん        -> git log -1 HEAD 
+
     Add & Commit系 ::
 
     ぜんぶ           -> git add -u
     hoge.py いれて   -> git add hoge.py
     hoge.py いらない -> git rm hoge.py
+    hoge.py まぜない -> git rm --cached hoge.py
     コミット hogehoge です    -> git commit -m "hogehoge"
     hoge あわせて    -> git marge
 
@@ -65,11 +81,13 @@ def show_help():
     たすけて -> コマンド表示
 
     !! べんり !!
+
+    べんり -> コマンド表示
     
     ギッハブよろしく hoge/hoge -> git remote add origin git@github:hoge/hoge
     ギッハブよろしく hoge/hoge github -> git remote add github git@github:hoge/hoge
-	グラフにして  -> git log --graph --date-order --all --date=short --oneline
-	hogehoge.py 無視 -> .gitignore + hogehoge.py
+    グラフにして  -> git log --graph --date-order --all --date=short --oneline
+    hogehoge.py 無視 -> .gitignore + hogehoge.py
 	""")
 def add_ignorefile(targetfile):
 	print ".gitignore に " + targetfile + " を追加しました。"
@@ -129,7 +147,9 @@ def parse_args(args):
 	if args[1] == "たすけて":
 		show_commit_help()
 		exit()
-	
+	if args[1] == "べんり":
+		show_combinient_help()
+		exit()
 	print "ごめん、それわからない"
 	exit()
 
