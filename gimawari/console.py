@@ -15,6 +15,10 @@ def show_combinient_help():
     Emacs -> git config --global core.editor emacs
     いろつき -> git config --global color.ui auto
 
+    ギッハブよろしく hoge/hoge -> git remote add origin git@github:hoge/hoge
+    ギッハブよろしく hoge/hoge github -> git remote add github git@github:hoge/hoge
+    グラフにして  -> git log --graph --date-order --all --date=short --oneline
+    hogehoge.py 無視 -> .gitignore + hogehoge.py
 	""")
 
 def show_commit_help():
@@ -33,12 +37,6 @@ def show_commit_help():
     
     リセット しっぱい -> git reflog
     
-	ギッハブよろしく hoge/hoge -> git remote add origin git@github:hoge/hoge
-    ギッハブよろしく hoge/hoge github -> git remote add github git@github:hoge/hoge
-    グラフにして  -> git log --graph --date-order --all --date=short --oneline
-    hogehoge.py 無視 -> .gitignore + hogehoge.py
-    
-    hoge かんせい -> git checkout master -> git marge hoge
     """)
 
 def show_help():
