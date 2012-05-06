@@ -72,11 +72,11 @@ def show_help():
 	""")
 
 def parse_args(args):
+	temp_args = []
 	zenkuhaku = re.compile("　")
-	if zenkuhaku.search(args[1]):
-		temp_args = args[1].decode("UTF-8").split(u"　")
-		args = ["gimawari"]
-		for i,item in enumerate(temp_args): args.append(item.encode("UTF-8"))
+	for arg in args: temp_args = temp_args + arg.decode("UTF-8").split(u"　")
+	args = []
+	for i,item in enumerate(temp_args): args.append(item.encode("UTF-8"))
 	if len(args) == 2:
 		for conf in gimawari_config.argone_list():
 			if args[1] == conf[0]:return conf[1]
