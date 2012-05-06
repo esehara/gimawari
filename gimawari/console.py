@@ -32,6 +32,13 @@ def show_commit_help():
     リベース とりけす -> git rebase --abort
     
     リセット しっぱい -> git reflog
+    
+	ギッハブよろしく hoge/hoge -> git remote add origin git@github:hoge/hoge
+    ギッハブよろしく hoge/hoge github -> git remote add github git@github:hoge/hoge
+    グラフにして  -> git log --graph --date-order --all --date=short --oneline
+    hogehoge.py 無視 -> .gitignore + hogehoge.py
+    
+    hoge かんせい -> git checkout master -> git marge hoge
     """)
 
 def show_help():
@@ -84,10 +91,6 @@ def show_help():
 
     べんり -> コマンド表示
     
-    ギッハブよろしく hoge/hoge -> git remote add origin git@github:hoge/hoge
-    ギッハブよろしく hoge/hoge github -> git remote add github git@github:hoge/hoge
-    グラフにして  -> git log --graph --date-order --all --date=short --oneline
-    hogehoge.py 無視 -> .gitignore + hogehoge.py
 	""")
 def add_ignorefile(targetfile):
 	print ".gitignore に " + targetfile + " を追加しました。"
