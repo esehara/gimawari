@@ -9,6 +9,7 @@ def argone_list():
 				["すべて","git add -u"],
 				["グラフにして","git log --graph --date-order --all --date=short --oneline"],
 				["たいひ","git stash save"],
+				["さいしん","git log -1 HEAD"]
 			])
 
 def first_alpha():
