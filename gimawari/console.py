@@ -68,8 +68,15 @@ def show_help():
     
     ギッハブよろしく hoge/hoge -> git remote add origin git@github:hoge/hoge
     ギッハブよろしく hoge/hoge github -> git remote add github git@github:hoge/hoge
-	グラフにして -> git log --graph --date-order --all --date=short --oneline
+	グラフにして  -> git log --graph --date-order --all --date=short --oneline
+	hogehoge.py 無視 -> .gitignore + hogehoge.py
 	""")
+def add_ignorefile(targetfile):
+	print ".gitignore に " + targetfile + " を追加しました。"
+	ignorefile = open(".gitignore","a")
+	ignorefile.write(targetfile + "\n")
+	ignorefile.close()
+	exit()
 
 def parse_args(args):
 	temp_args = []
@@ -89,6 +96,7 @@ def parse_args(args):
 			if args[2] == "けす"    : return "git stash drop"
 		alphabet = re.compile("^(\w|.)+$")
 		if alphabet.search(args[1]):
+			if args[2] == "無視"    : add_ignorefile(args[1])
 			for conf in gimawari_config.first_alpha():
 				if args[2] == conf[0]:return conf[1] + " " + args[1]
 	if args[1] == "コミット":
