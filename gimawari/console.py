@@ -53,8 +53,8 @@ def parse_args(args):
 		if args[2] == "しっぱい": return "git reflog"
 
 	if args[1] == "ギッハブよろしく":
-		if len(args) == 3:return "git remote add origin git@github:" + args[2]
-		if len(args) == 4:return "git remote add " + args[3] + " git@github:" + args[2]
+		if len(args) == 3:return "git remote add origin git@github.com:" + args[2]
+		if len(args) == 4:return "git remote add " + args[3] + " git@github.com:" + args[2]
 
 	if len(args) == 4:
 		if args[2] == "へ" and (args[3] == "おねがい" 
